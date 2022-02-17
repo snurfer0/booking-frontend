@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import BookingList from './components/BookingList';
+import { fetchBookings } from './store/actions/index';
+import { DELETE_BOOKING } from './utils/constants';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = ({ bookings, fetchBookings }) => {
+	const dispatch = useDispatch();
 
-export default App;
+	useEffect(() => {
+		fetchBookings();
+	}, []);
+
+	return (
+		<section className='container'>
+			<h1>upcoming bookings</h1>
+			<BookingList
+				bookings={bookings}
+				onDeleteBooking={(id) =>
+					dispatch({ type: DELETE_BOOKING, payload: id })
+				}
+			/>
+		</section>
+	);
+};
+
+const mapStateToProps = (state) => {
+	return {
+		bookings: state.bookings,
+	};
+};
+
+export default connect(mapStateToProps, { fetchBookings })(App);
