@@ -34,8 +34,11 @@ export const getDate = (date) => {
 export const formatUserEmailList = (users) => {
 	let emails = users.map((u) => u.email);
 	let returnStr = '';
-	emails.forEach((email) => {
-		return (returnStr += email + '\n');
+	emails.forEach((email, index) => {
+		if (index === emails.length - 1) {
+			return (returnStr += email + '\n');
+		}
+		return (returnStr += email + ' | \n');
 	});
 
 	return returnStr;

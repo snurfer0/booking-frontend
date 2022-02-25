@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { React } from 'react';
 import {
 	formatDate,
+	formatUserEmailList,
 	getDate,
 	getMonthShort,
-    getTime,
-    formatUserEmailList
-} from '../utils/formatters';
+	getTime,
+} from '../../utils/formatters';
 
 const Booking = ({
 	id,
@@ -29,18 +29,13 @@ const Booking = ({
 			<section className='card-cont'>
 				<div className='card-title'>
 					<h3>
-						{event.title}, {address.venueName}
+						#{id} {event.title}, {address.venueName}
 					</h3>
 					<h3>{totalPrice}$</h3>
 				</div>
-				<p>{event.description}</p>
-				<div class='demo'>
-					<p>
-						<a href='#' data-tooltip={formatUserEmailList(event.users)}>
-							See who's comming
-						</a>
-					</p>
-				</div>
+				<p className='description'>{event.description}</p>
+				<p className='host'>HOST: {user.email}</p>
+
 				<div className='even-date'>
 					<i className='fa fa-calendar'></i>
 					<time className='time-container'>
@@ -48,20 +43,28 @@ const Booking = ({
 							<h2>{formatDate(event.startTime)}</h2>
 						</span>
 						<span>
-							<h2>{getTime(event.startTime)}</h2>
+							<h2>
+								{getTime(event.startTime)} -{' '}
+								{getTime(event.endTime)}
+							</h2>
 						</span>
 					</time>
 				</div>
-
+				<p>
+					<a href='#' data-tooltip={formatUserEmailList(event.users)}>
+						See who's comming
+					</a>
+				</p>
 				<div className='even-info'>
 					<FontAwesomeIcon
-						className='locaionDotIcon'
+						className='locationDotIcon'
 						icon={faLocationDot}
 					/>
 					{address.address}&nbsp; {address.zip}&nbsp; {address.city}
 					{'-'}
 					{address.state}, {address.country}
 				</div>
+
 				<button
 					className=' grow_on_hover'
 					href='#'

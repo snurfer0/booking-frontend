@@ -1,33 +1,20 @@
-import React, { useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
-import BookingList from './components/BookingList';
-import { fetchBookings } from './store/actions/index';
-import { DELETE_BOOKING } from './utils/constants';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { _routes } from './utils/_routes';
 
-const App = ({ bookings, fetchBookings }) => {
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		fetchBookings();
-	}, []);
-
+const App = () => {
 	return (
-		<section className='container'>
-			<h1>upcoming bookings</h1>
-			<BookingList
-				bookings={bookings}
-				onDeleteBooking={(id) =>
-					dispatch({ type: DELETE_BOOKING, payload: id })
-				}
-			/>
-		</section>
+		<Switch>
+			{_routes.map((route) => (
+				<Route
+					key={route.path}
+					path={route.path}
+					component={route.component}
+					exact={route.exact}
+				/>
+			))}
+		</Switch>
 	);
 };
 
-const mapStateToProps = (state) => {
-	return {
-		bookings: state.bookings,
-	};
-};
-
-export default connect(mapStateToProps, { fetchBookings })(App);
+export default App;

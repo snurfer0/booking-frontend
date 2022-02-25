@@ -109,11 +109,21 @@ h1 {
 	width: 65%;
 	font-size: 35%;
 	padding: 10px 10px 30px 50px;
+
+	p {
+		width: 300px;
+		font-size: 15px;
+		font-style: italic;
+
+	}
+
+	.host {
+		padding: 0 0 13px;
+	}
 }
 
 .card-cont h3 {
 	color: #3c3c3c;
-	font-size: 150%;
 }
 
 .card-cont > div {
@@ -131,23 +141,13 @@ h1 {
 	font-size: 15px;
 }
 
-.locaionDotIcon {
-	margin-right: 10px !important;
+.locationDotIcon {
+	margin-right: 5px !important;
 }
 
 .card-title > h3:first-child {
-	font-size: 10px;
-}
-
-.card-title {
-	width: 100% !important;
-	display: flex;
-	justify-content: space-between; /* Can be changed in the live sample */
-}
-
-.card-title > h3:first-child {
-	width: 300px;
-	font-size: 20px;
+	width: 430px;
+	font-size: 16px;
 }
 
 .card-title > h3:last-child {
@@ -164,23 +164,8 @@ h1 {
 	padding: 5% 5% 0 0;
 }
 
-.card-cont .even-info p {
-	padding: 30px 50px 0 0;
-}
-
-.locaionDotIcon {
-	margin-right: 2px;
-	margin-bottom: 1px;
-}
-
 .card-cont .even-date time span {
 	display: block;
-}
-
-.card-cont p {
-	width: 300px;
-	font-size: 10px;
-	font-style: italic;
 }
 
 .card-cont button {
